@@ -1,309 +1,301 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio | Développeur & Créatif</title>
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e293b;
-            --accent-color: #3b82f6;
-            --bg-color: #f8fafc;
-            --text-color: #334155;
-            --light-text: #64748b;
-            --white: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thomas Duvivier – Portfolio & CV | BTS SIO SLAM</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131c;
+  --surface2: #1c1c2a;
+  --accent: #6c63ff;
+  --accent2: #ff6584;
+  --text: #e8e8f0;
+  --muted: #8888aa;
+  --border: rgba(108,99,255,0.2);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+ 
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 3rem;
+  background: rgba(10,10,15,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--accent); letter-spacing: -.02em; }
+.nav-logo em { color: var(--accent2); font-style: normal; }
+nav ul { list-style: none; display: flex; gap: 2rem; }
+nav ul a { font-family: 'DM Mono', monospace; font-size: .75rem; text-decoration: none; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
+nav ul a:hover { color: var(--text); }
+ 
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 7rem 3rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; top: -200px; right: -150px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,99,255,.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+.hero-tag {
+  font-family: 'DM Mono', monospace; font-size: .72rem; letter-spacing: .15em;
+  color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: .7rem;
+}
+.hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--accent); display: block; }
+h1 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: .95; letter-spacing: -.04em; margin-bottom: 1.5rem;
+}
+h1 .accent { color: var(--accent); }
+h1 .sub { font-size: clamp(1.6rem, 3.5vw, 3rem); color: var(--muted); font-weight: 700; }
+.hero-desc { max-width: 500px; color: var(--muted); font-size: 1rem; line-height: 1.75; margin-bottom: 2.5rem; }
+.ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn { font-family: 'DM Mono', monospace; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; padding: .85rem 1.8rem; border-radius: 4px; text-decoration: none; transition: all .2s; font-weight: 500; display: inline-block; }
+.btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+ 
+/* SECTIONS */
+.section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+.section-label { font-family: 'DM Mono', monospace; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .6rem; }
+.section-label::before { content: '// '; opacity: .5; }
+h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.03em; margin-bottom: 3rem; line-height: 1.05; }
+ 
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; }
+.card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+.card p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+ 
+.stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.8rem; text-align: center; }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--accent); line-height: 1; }
+.stat-lbl { font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--muted); margin-top: .4rem; letter-spacing: .05em; }
+ 
+/* COMPETENCES */
+.skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
+.skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.6rem; }
+.skill-group h4 { font-family: 'Syne', sans-serif; font-size: .82rem; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+.bar { margin-bottom: .85rem; }
+.bar-top { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); margin-bottom: .3rem; }
+.bar-track { height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--accent); }
+.tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .3rem; }
+.tag { font-family: 'DM Mono', monospace; font-size: .72rem; background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: .3rem .65rem; border-radius: 3px; }
+ 
+/* PROJETS */
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.project-thumb { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: linear-gradient(135deg, var(--surface2), var(--surface)); }
+.project-body { padding: 1.4rem; }
+.project-body h4 { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
+.project-body p { font-size: .83rem; color: var(--muted); line-height: 1.6; margin-bottom: .8rem; }
+ 
+/* CV */
+.cv-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; }
+.cv-block { margin-bottom: 2rem; }
+.cv-block h3 { font-family: 'Syne', sans-serif; font-size: .88rem; font-weight: 700; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: .5rem; margin-bottom: 1rem; }
+.cv-line { font-size: .86rem; color: var(--muted); margin-bottom: .4rem; padding-left: 1rem; position: relative; }
+.cv-line::before { content: '▸'; color: var(--accent); position: absolute; left: 0; }
+.cv-entry { margin-bottom: 1.2rem; }
+.cv-entry .cv-title { font-size: .9rem; font-weight: 500; }
+.cv-entry .cv-date { font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--accent2); margin: .2rem 0 .3rem; }
+ 
+/* Timeline */
+.timeline { padding-left: 1.5rem; border-left: 1px solid var(--border); }
+.tl-item { position: relative; margin-bottom: 1.8rem; }
+.tl-item::before { content: ''; position: absolute; left: -1.9rem; top: .3rem; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.tl-item h4 { font-family: 'Syne', sans-serif; font-size: .92rem; font-weight: 700; }
+.tl-date { font-family: 'DM Mono', monospace; font-size: .7rem; color: var(--accent2); margin: .2rem 0 .4rem; }
+ 
+.dl-btn { display: inline-flex; align-items: center; gap: .5rem; font-family: 'DM Mono', monospace; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: .7rem 1.4rem; border-radius: 4px; margin-top: .8rem; transition: 0.3s; }
+.dl-btn:hover { background: var(--accent); color: #fff; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+/* FOOTER / CONTACT COMPACT */
+footer { padding: 4rem 3rem; background: var(--surface); border-top: 1px solid var(--border); text-align: center; }
+.footer-contact { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.footer-contact a { color: var(--text); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+.footer-contact a:hover { color: var(--accent); }
+footer .credits { font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--muted); }
+footer .credits span { color: var(--accent); }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+/* VEILLE SPECIFIC */
+.veille-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2rem; }
+.veille-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.6rem; }
+.veille-card h3 { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; margin-bottom: .6rem; }
+.veille-card p { font-size: .83rem; color: var(--muted); line-height: 1.65; }
 
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--secondary-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .hero {
-            padding: 10rem 2rem 6rem;
-            text-align: center;
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--light-text);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-color);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.2rem;
-            color: var(--secondary-color);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background-color: var(--primary-color);
-        }
-
-        /* Portfolio Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-img {
-            height: 200px;
-            background-color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card-content h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        /* CV Section */
-        .cv-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .cv-item {
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--primary-color);
-        }
-
-        .cv-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .cv-item .date {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .cv-container { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.2rem; }
-            .nav-links { display: none; }
-        }
-    </style>
+@media (max-width: 860px) {
+  nav { padding: 1rem 1.2rem; }
+  .grid-2, .skills-grid, .projects-grid, .cv-wrap, .stats-row, .veille-grid { grid-template-columns: 1fr; }
+  h1 { font-size: clamp(2.5rem,10vw,4rem); }
+}
+</style>
 </head>
 <body>
+ 
+<nav>
+  <div class="nav-logo">thomas<em>.</em>dev</div>
+  <ul>
+    <li><a href="#hero">Accueil</a></li>
+    <li><a href="#veille">Veille</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#cv">CV</a></li>
+  </ul>
+</nav>
+ 
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">BTS SIO — Option SLAM · 2e année</div>
+    <h1>
+      Thomas<br>
+      <span class="accent">Duvivier</span><br>
+      <span class="sub">Développeur Full-Stack.</span>
+    </h1>
+    <p class="hero-desc">
+      Étudiant passionné au Lycée Gustave Flaubert, spécialisé dans la conception d'applications métiers et le développement web moderne.
+    </p>
+    <div class="ctas">
+      <a href="#projets" class="btn btn-primary">Mes Réalisations</a>
+      <a href="#cv" class="btn btn-outline">Parcours complet</a>
+    </div>
+  </div>
+</div>
+ 
+<hr style="border:none; border-top: 1px solid var(--border);">
 
-    <header>
-        <nav>
-            <div class="logo">MonNom.dev</div>
-            <ul class="nav-links">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#cv">Mon CV</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="section" id="veille">
+  <div class="section-label">Veille technologique</div>
+  <h2>Le langage Rust 🦀</h2>
+  <div class="veille-grid">
+    <div class="veille-card">
+      <h3>Sécurité & Performance</h3>
+      <p>Rust élimine les erreurs de mémoire sans utiliser de ramasse-miettes (Garbage Collector), offrant une rapidité comparable au C++.</p>
+    </div>
+    <div class="veille-card">
+      <h3>Adoption Industrielle</h3>
+      <p>Utilisé par Google, Microsoft et Amazon pour des composants critiques. Recommandé par la Maison-Blanche pour la cybersécurité en 2024.</p>
+    </div>
+    <div class="veille-card">
+      <h3>Écosystème Moderne</h3>
+      <p>Avec l'outil Cargo et la compilation WebAssembly, Rust redéfinit le développement système et le web haute performance.</p>
+    </div>
+  </div>
+</div>
 
-    <section class="hero" id="accueil">
-        <h1>Bonjour, je suis [Votre Nom]</h1>
-        <p>Développeur Full-Stack passionné par la création d'expériences numériques innovantes et intuitives.</p>
-        <a href="#portfolio" class="btn">Voir mes projets</a>
-    </section>
-
-    <div class="container" id="portfolio">
-        <div class="section-title">
-            <h2>Mon Portfolio</h2>
+<div class="section" id="projets">
+  <div class="section-label">Réalisations</div>
+  <h2>Projets Académiques</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-thumb">🏥</div>
+      <div class="project-body">
+        <h4>Application Clinique Pasteur</h4>
+        <p>Système de gestion complet : authentification sécurisée, suivi des rendez-vous et dossiers médicaux informatisés.</p>
+        <div class="tags">
+          <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">SQL</span>
         </div>
-        <div class="portfolio-grid">
-            <div class="card">
-                <div class="card-img">💻</div>
-                <div class="card-content">
-                    <h3>Projet E-commerce</h3>
-                    <p>Une application web complète avec panier et paiement sécurisé.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img">📱</div>
-                <div class="card-content">
-                    <h3>App Mobile Santé</h3>
-                    <p>Une interface utilisateur moderne pour le suivi de la condition physique.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img">🎨</div>
-                <div class="card-content">
-                    <h3>Design Système</h3>
-                    <p>Création d'une identité visuelle et d'un guide de style UI/UX.</p>
-                </div>
-            </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-thumb">🌐</div>
+      <div class="project-body">
+        <h4>Site Vitrine Clinique</h4>
+        <p>Conception d'une interface responsive présentant les spécialités médicales avec un panel d'administration dédié.</p>
+        <div class="tags">
+          <span class="tag">HTML/CSS</span><span class="tag">Responsive</span><span class="tag">UI/UX</span>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="cv">
+  <div class="section-label">Curriculum Vitae</div>
+  <h2>Mon Parcours</h2>
+  <div class="cv-wrap">
+    <div>
+      <div class="cv-block">
+        <h3>Formation</h3>
+        <div class="cv-entry">
+          <div class="cv-title">BTS SIO Option SLAM</div>
+          <div class="cv-date">2024 — 2026 | Rouen</div>
+          <p>Lycée Gustave Flaubert</p>
+        </div>
+        <div class="cv-entry">
+          <div class="cv-title">Baccalauréat Général (Maths/NSI)</div>
+          <div class="cv-date">2021 — 2024 | Dieppe</div>
+          <p>Lycée Pablo Neruda</p>
+        </div>
+      </div>
+      
+      <div class="cv-block">
+        <h3>Niveaux</h3>
+        <div class="bar"><div class="bar-top"><span>HTML/CSS</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="bar"><div class="bar-top"><span>Python</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div>
+        <div class="bar"><div class="bar-top"><span>PHP</span><span>65%</span></div><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div></div>
+        <div class="bar"><div class="bar-top"><span>SQL/POO</span><span>60%</span></div><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div></div>
+      </div>
+
+      <a href="CV_Thomas_Duvivier.pdf" class="dl-btn">⬇ Télécharger le CV (PDF)</a>
     </div>
 
-    <div class="container" id="cv">
-        <div class="section-title">
-            <h2>Mon CV</h2>
+    <div>
+      <div class="cv-block">
+        <h3>Expériences Professionnelles</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <h4>Stagiaire Développeur — Visionic</h4>
+            <div class="tl-date">Janvier — Février 2026 | St-Étienne-du-Rouvray</div>
+            <p>Développement logiciel en environnement professionnel. Travail en équipe et immersion systèmes embarqués.</p>
+          </div>
+          <div class="tl-item">
+            <h4>Stage Informatique — Mairie de Dieppe</h4>
+            <div class="tl-date">Mai — Juin 2025 | Dieppe</div>
+            <p>Support utilisateur et contribution aux projets de développement applicatif de la collectivité.</p>
+          </div>
+          <div class="tl-item">
+            <h4>Animateur — L'Archipel</h4>
+            <div class="tl-date">Avril & Août 2024 | Dieppe</div>
+            <p>Animation de groupe et relationnel public. Développement du sens des responsabilités.</p>
+          </div>
         </div>
-        <div class="cv-container">
-            <div>
-                <h3>Expériences</h3>
-                <div class="cv-item">
-                    <span class="date">2022 - Présent</span>
-                    <h4>Développeur Senior - TechCorp</h4>
-                    <p>Gestion d'une équipe de 5 développeurs et déploiement d'architectures cloud.</p>
-                </div>
-                <div class="cv-item">
-                    <span class="date">2020 - 2022</span>
-                    <h4>Développeur Junior - Web Agency</h4>
-                    <p>Développement de thèmes WordPress personnalisés et intégration HTML/CSS.</p>
-                </div>
-            </div>
-            <div>
-                <h3>Formation</h3>
-                <div class="cv-item">
-                    <span class="date">2018 - 2020</span>
-                    <h4>Master en Informatique</h4>
-                    <p>Université de Technologie - Spécialisation Web.</p>
-                </div>
-                <div class="cv-item">
-                    <span class="date">2015 - 2018</span>
-                    <h4>Licence Math-Info</h4>
-                    <p>Faculté des Sciences.</p>
-                </div>
-            </div>
-        </div>
+      </div>
+      
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-num">2</div><div class="stat-lbl">Ans de BTS</div></div>
+        <div class="stat-box"><div class="stat-num">3</div><div class="stat-lbl">Expériences</div></div>
+        <div class="stat-box"><div class="stat-num">5+</div><div class="stat-lbl">Langages</div></div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <section class="container" id="contact" style="text-align: center;">
-        <div class="section-title">
-            <h2>Me Contacter</h2>
-        </div>
-        <p>Vous avez un projet en tête ? N'hésitez pas à m'envoyer un message !</p>
-        <p style="margin-top: 1rem; font-weight: bold;">email@monexemple.com</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 MonNom.dev - Tous droits réservés.</p>
-    </footer>
-
+<footer>
+  <div class="footer-contact">
+    <a href="mailto:thomas.duvivier45@gmail.com">📧 thomas.duvivier45@gmail.com</a>
+    <a href="tel:0786045462">📞 07.86.04.54.62</a>
+    <a href="https://github.com/Pasware" target="_blank">🐙 GitHub</a>
+    <a href="https://www.linkedin.com/in/thomas-duvivier-1b0137398/" target="_blank">💼 LinkedIn</a>
+  </div>
+  <div class="credits">
+    © 2025 <span>Thomas Duvivier</span> — Rouen/Dieppe — Conçu avec passion ☕
+  </div>
+</footer>
+ 
 </body>
 </html>

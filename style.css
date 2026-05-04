@@ -1,0 +1,66 @@
+/* Général */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Gris clair pour le fond */
+}
+
+/* Bandeau bleu */
+.container-fluid.blueBox {
+    background-color: #0097b2; /* Bleu clair */
+    padding: 20px 0;
+}
+
+/* En-tête */
+header {
+    background-color: #186d23; /* Vert clair */
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    color: #000000; /* Noir légèrement atténué */
+    text-align: center;
+}
+
+.section-btn {
+    background-color: #495057; 
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    width: 200px;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.section-btn:hover {
+    background-color: #000000; /* Gris encore plus foncé */
+    transform: scale(1.05); /* Zoom léger */
+}
+
+/* Alignement des colonnes */
+.container {
+    margin-top: 50px;
+}
+/*
+.row .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+*/
+.blueBox{
+    background-color:#0097b2;
+}
+.btn-menu{
+    width:100%;
+}
